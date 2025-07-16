@@ -241,4 +241,4 @@ def train_poisson_rnn(x0_train, x1_train, x0_test, x1_test, ncomp=12, dropout=0.
     pseudo_r2 = 1 - (LL / LL_0)
     mse = torch.mean((z_test - x1_test) ** 2).item()
 
-    return train_losses, val_losses, z_test, pseudo_r2, mse
+    return train_losses, val_losses, z_test, pseudo_r2.detach().numpy(), mse
