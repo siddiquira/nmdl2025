@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from scipy.stats import pearsonr
 
 def load_data():
     """
@@ -74,6 +75,7 @@ def get_used_areas_and_regions(dat, brain_areas, brain_regions):
 
     # Regions corresponding to those areas
     used_regions = sorted(set(region_map.get(area, "unknown") for area in used_areas))
+    used_regions = [r for r in used_regions if r != 'unknown']
 
     return used_areas, used_regions, region_map
 
